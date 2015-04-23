@@ -115,3 +115,93 @@ var fishingAreas = {"type":"FeatureCollection",
 			"coordinates":[[[-69.27276907451142,41.6055652011533],[-69.35930433250581,41.645504550996975],[-69.45915270711487,41.69210045914792],[-69.5590010817238,41.79860539206413],[-69.59228387326021,41.89179720836586],[-69.65884945633286,42.058211166047386],[-69.7720109475564,42.15140298234911],[-69.88517243877988,42.211312007114714],[-69.96505113846717,42.291190706801785],[-70.06489951307611,42.317816940030866],[-70.09818230461241,42.424321872947246],[-70.21800035414321,42.49088745601989],[-70.33781840367402,42.524170247556185],[-70.44432333659029,42.55745303909248],[-70.48426268643391,42.66395797200886],[-70.48426268643391,42.783776021539666],[-70.4776061281267,42.94353342091398],[-70.39772742843945,43.15654328674651],[-70.25793970398689,43.30964412781367],[-70.07821262969065,43.429462177344476],[-69.87185932216534,43.529310551953415],[-69.5590010817238,43.54262366856801],[-69.26611251620409,43.59587613502606],[-69.02647641714248,43.60918925164066],[-68.8001534346954,43.602532693333444],[-68.58048701055566,43.682411393020686],[-68.38744681964482,43.762290092707815],[-68.17443695381229,43.87545158393135],[-67.99470987951617,43.98195651684756],[-67.80166968860544,44.05517865822759],[-67.59531638108012,44.10843112468575],[-67.26248846571679,44.03520898330572],[-67.00953925004063,43.86879502562414],[-66.9163474337389,43.71569418455687],[-66.88306464220261,43.50934087703172],[-66.81649905912997,43.2896744528918],[-66.77655970928635,43.136573611824645],[-66.66339821806275,43.03006867890849],[-66.57020640176103,42.86365472122674],[-66.54358016853195,42.77046290492501],[-66.58351951837557,42.63733173877978],[-66.66339821806275,42.51751368924897],[-66.7299638011354,42.41100875633259],[-66.78987282590089,42.324473498338136],[-66.92300399204623,42.27122103187992],[-67.0827613914206,42.237938240343794],[-67.2358622324877,42.237938240343794],[-67.36233684032584,42.22462512372914],[-67.49546800647107,42.17137265727098],[-67.60197293938745,42.15140298234911],[-67.79501313029817,42.11812019081299],[-67.88154838829257,42.058211166047386],[-68.00136643782338,42.004958699589395],[-68.08124513751056,41.931736558209366],[-68.14781072058332,41.89845376667307],[-68.26762877011413,41.89845376667307],[-68.33419435318672,41.84520130021491],[-68.42072961118123,41.81191850867856],[-68.47398207763939,41.745352925605914],[-68.51392142748296,41.68544390084054],[-68.6137698020919,41.65881766761146],[-68.6803353851646,41.61222175946068],[-68.75355752654457,41.56562585130973],[-68.81346655130994,41.53234305977344],[-68.93328460084075,41.53234305977344],[-69.05975920867888,41.52568650146617],[-69.17292069990236,41.53899961808065],[-69.27276907451142,41.6055652011533]]]}}
 	]
 }
+
+var ports = { "type": "FeatureCollection",
+    "features": [
+      { "type": "Feature",
+        "geometry": {"type": "Point", "coordinates": [-69.950474, 41.688616]},
+        "properties": {
+                "Name":"Chatham Harbor/Chatham Fish Pier",
+                "Fleet":"Vessel-1, Vessel-2, Vessel-3",
+                "Fleet-Icon":"vessel-1, vessel-2, vessel-3",
+                "Fishing-Areas-Covered":"Cape Cod Bay,Stellwagen Bank,Nantucket Sound,Inshore Waters,Southern New England,Great South Channel,Georges Bank,Gulf of Maine",
+                "Species-Targeted":"Bluefish,Dogfish,Flounder,Lobster,Pollock &amp; Other Groundfish,Sea Scallops,Striped Bass,Tuna",
+                "Species-Targeted-Icon":"bluefish,dogfish,flounder,lobster,pollock,seascallops,stripedbass,tuna",
+                "Fleet-Fishing-Season":"May-November",
+                "Other":""
+        }
+        },
+
+      { "type": "Feature",
+        "geometry": {"type": "Point", "coordinates": [-70.026306, 41.927872]},
+        "properties": {
+                "Name":"Wellfleet Harbor",
+                "Fleet":"Vessel-1, Vessel-2, Vessel-3",
+                "Fleet-Icon":"vessel-1, vessel-2, vessel-3",
+                "Fishing-Areas-Covered":"Cape Cod Bay,Stellwagen Bank,Nantucket Sound,Inshore Waters,Southern New England,Great South Channel,Georges Bank,Gulf of Maine",
+                "Species-Targeted":"Bluefish,Dogfish,Flounder,Lobster,Pollock &amp; Other Groundfish,Sea Scallops,Striped Bass,Tuna",
+                "Species-Targeted-Icon":"bluefish,dogfish,flounder,lobster,pollock,seascallops,stripedbass,tuna",
+                "Fleet-Fishing-Season":"May-November",
+                "Other":""
+        }
+        },
+
+      { "type": "Feature",
+        "geometry": {"type": "Point", "coordinates": [-70.180544, 42.049069]},
+        "properties": {
+                "Name":"Provincetown Harbor",
+                "Fleet":"Vessel-1, Vessel-2, Vessel-3",
+                "Fleet-Icon":"vessel-1, vessel-2, vessel-3",
+                "Fishing-Areas-Covered":"Cape Cod Bay,Stellwagen Bank,Nantucket Sound,Inshore Waters,Southern New England,Great South Channel,Georges Bank,Gulf of Maine",
+                "Species-Targeted":"Bluefish,Dogfish,Flounder,Lobster,Pollock &amp; Other Groundfish,Sea Scallops,Striped Bass,Tuna",
+                "Species-Targeted-Icon":"bluefish,dogfish,flounder,lobster,pollock,seascallops,stripedbass,tuna",
+                "Fleet-Fishing-Season":"May-November",
+                "Other":""
+        }
+        },
+      
+      { "type": "Feature",
+        "geometry": {"type": "Point", "coordinates": [-70.275644, 41.64929]},
+        "properties": {
+                "Name":"Hyannis Inner Harbor",
+                "Fleet":"Vessel-1, Vessel-2, Vessel-3",
+                "Fleet-Icon":"vessel-1, vessel-2, vessel-3",
+                "Fishing-Areas-Covered":"Cape Cod Bay,Stellwagen Bank,Nantucket Sound,Inshore Waters,Southern New England,Great South Channel,Georges Bank,Gulf of Maine",
+                "Species-Targeted":"Bluefish,Dogfish,Flounder,Lobster,Pollock &amp; Other Groundfish,Sea Scallops,Striped Bass,Tuna",
+                "Species-Targeted-Icon":"bluefish,dogfish,flounder,lobster,pollock,seascallops,stripedbass,tuna",
+                "Fleet-Fishing-Season":"May-November",
+                "Other":""
+        }
+        },
+
+      { "type": "Feature",
+        "geometry": {"type": "Point", "coordinates": [-70.603576, 41.546186]},
+        "properties": {
+                "Name":"Falmouth Inner Harbor",
+                "Fleet":"Vessel-1, Vessel-2, Vessel-3",
+                "Fleet-Icon":"vessel-1, vessel-2, vessel-3",
+                "Fishing-Areas-Covered":"Cape Cod Bay,Stellwagen Bank,Nantucket Sound,Inshore Waters,Southern New England,Great South Channel,Georges Bank,Gulf of Maine",
+                "Species-Targeted":"Bluefish,Dogfish,Flounder,Lobster,Pollock &amp; Other Groundfish,Sea Scallops,Striped Bass,Tuna",
+                "Species-Targeted-Icon":"bluefish,dogfish,flounder,lobster,pollock,seascallops,stripedbass,tuna",
+                "Fleet-Fishing-Season":"May-November",
+                "Other":""
+        }
+        },
+
+        
+      { "type": "Feature",
+        "geometry": {"type": "Point", "coordinates": [-70.50316, 41.771599]},
+        "properties": {
+                "Name":"East Canal Entrance Harbor",
+                "Fleet":"Vessel-1, Vessel-2, Vessel-3",
+                "Fleet-Icon":"vessel-1, vessel-2, vessel-3",
+                "Fishing-Areas-Covered":"Cape Cod Bay,Stellwagen Bank,Nantucket Sound,Inshore Waters,Southern New England,Great South Channel,Georges Bank,Gulf of Maine",
+                "Species-Targeted":"Bluefish,Dogfish,Flounder,Lobster,Pollock &amp; Other Groundfish,Sea Scallops,Striped Bass,Tuna",
+                "Species-Targeted-Icon":"bluefish,dogfish,flounder,lobster,pollock,seascallops,stripedbass,tuna",
+                "Fleet-Fishing-Season":"May-November",
+                "Other":""
+        }
+        }
+
+       ]
+     }
