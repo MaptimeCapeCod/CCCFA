@@ -1,0 +1,284 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset=utf-8 />
+<title>cccfa beta</title>
+<meta name='viewport' content='width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no' />
+
+<script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+
+<script src='https://api.tiles.mapbox.com/mapbox.js/v2.1.8/mapbox.js'></script>
+<script src='geojson.js'></script>
+<link href='https://api.tiles.mapbox.com/mapbox.js/v2.1.8/mapbox.css' rel='stylesheet' />
+<style>
+  body {
+    margin:0;
+    padding:0;
+    font-family:'Franklin Gothic Book','Franklin Gothic', 'ITC Franklin Gothic', Arial, sans-serif;
+    overflow:hidden;
+    height:100%;
+    width:100%;
+  }
+  #map {
+    position:absolute;
+    top:0;
+    bottom:0;
+    width:100%;
+    height:100%;
+
+  }
+  #areaName{
+    height:4vw;
+    width:auto;
+    position:absolute;
+    bottom:11vw;
+    right:0px;
+    border:0x solid red;
+    z-index:0;
+    color:white;
+    font-size:4vw;
+    padding-right:1vw;
+  }
+  .fishIcons{
+    position:absolute;
+    height:9vw;
+    width:100vw;
+    border:0px solid green;
+    z-index: 0;
+  }
+  .top{
+    top:-9vw;
+    left:16vw;
+  }
+  .bottom{
+    bottom:-9vw;
+  }
+  .icon{
+    display:inline-block;
+    float:left;
+    height:100%;
+    width:15vw;
+    margin-left:1vw;
+    border:0px solid red;
+    opacity:0.9;
+    overflow:hidden;
+  }
+  .iTop{
+    border-bottom-left-radius:5px;
+    border-bottom-right-radius:5px;
+  }
+  .iBottom{
+    border-top-left-radius:5px;
+    border-top-right-radius:5px;
+  }
+  .icon img{
+    width:100%;
+    height:100%;
+  }
+  #otherList{
+    list-style: none;
+    font-size: 1em;
+    border:0px solid red;
+    padding-left:10%;
+  }
+  #other{
+    height:auto;
+    min-height:100%;
+    background-color:ghostwhite;
+  }
+  #otherHead{
+    border:0px solid blue;
+    margin-top:0.5vw;
+    height:auto;
+    width:100%;
+    text-align: center;
+    font-size: 1.1em;
+  }
+</style>
+</head>
+<body>
+
+
+<div id='map'></div>
+<div id='areaName'></div>
+<div class="fishIcons top"></div>
+<div class="fishIcons bottom"></div>
+
+
+<script>
+  L.mapbox.accessToken = 'pk.eyJ1IjoiY2hhc2VncnViZXIiLCJhIjoidV9tdHNYSSJ9.RRyvDLny4YwDwzPCeOJZrA';
+
+  var southWest = L.latLng(40, -72), 
+      northEast = L.latLng(43.5, -66.5), 
+      bounds = L.latLngBounds(southWest, northEast);
+
+  var map = L.mapbox.map('map', 'chasegruber.81bd1c23', { minZoom: 8, maxZoom:18, maxBounds:bounds})
+           .setView([41.8, -71], 8);
+
+  var bathy = L.mapbox.featureLayer(bathy)
+            .on('dblclick', function(e) {
+              map.setView(e.latlng, map.getZoom() + 1);
+            });
+
+  var fishingAreas = L.mapbox.featureLayer(fishingAreas)
+            .on('dblclick', function(e) {
+              map.setView(e.latlng, map.getZoom() + 1);
+            });
+
+  var ports = L.mapbox.featureLayer(ports).addTo(map);
+  ports.eachLayer(function(layer){
+    layer.bindPopup(layer.feature.properties.Name);
+    layer.setIcon(L.mapbox.marker.icon({
+                'marker-color': "#ff6c2f",
+                'marker-size': 'medium',
+                'marker-symbol': 'harbor'
+            }));
+  });
+
+  map.addLayer(bathy);
+  map.addLayer(fishingAreas);
+
+  bathy.eachLayer(function (layer){
+    var depth = layer.feature.properties.level;
+      if (depth == 0){
+        layer.setStyle({
+          fillColor:"#1b5faa;",
+          weight:0,
+          fillOpacity:0
+        });
+      }else if(depth == 1){
+        layer.setStyle({
+          fillColor:"#1b5faa;",
+          weight:0,
+          fillOpacity:0.05
+        });
+      }else if(depth== 2){
+        layer.setStyle({
+          fillColor:"#1b5faa;",
+          weight:0,
+          fillOpacity:0.1
+        });
+      }else if(depth==3){
+        layer.setStyle({
+          fillColor:"#1b5faa;",
+          weight:0,
+          fillOpacity:0.15,
+        });
+      }else if(depth==4){
+        layer.setStyle({
+          fillColor:"#1b5faa;",
+          weight:0,
+          fillOpacity:0.2
+        });
+      }else{
+        layer.setStyle({
+          fillColor:"#1b5faa;",
+          weight:0,
+          fillOpacity:0.25
+        });
+      }
+  });
+
+  fishingAreas.eachLayer(function (layer){
+    layer.setStyle({
+      fillColor:"#ff0000;",
+      weight:0,
+      fillOpacity:0
+    });
+  });
+
+  var fishesIhave = ["dogfish","pollock","tuna",
+                  "bluefish","monkfish","skate","lobster",
+                  "seascallops", "stripedbass", "flounder","other"];
+
+  for (var i = 0;i<fishesIhave.length;i++){
+    var icon = "<div class='icon' id='"+fishesIhave[i]+"'><img src='icons/"+fishesIhave[i]+".png' /></div>";
+    if (i<6){
+      var icon = "<div class='icon iBottom' id='"+fishesIhave[i]+"'><img src='icons/"+fishesIhave[i]+".png' /></div>";
+      $(".bottom").append(icon);
+    }else{
+      if (fishesIhave[i] == "other"){
+        var icon = "<div class='icon iTop' id='"+fishesIhave[i]+"'><div id='otherHead'>Other Species:</div><ul id='otherList'></ul></div>";
+        $(".top").append(icon);
+      }else{
+        var icon = "<div class='icon iTop' id='"+fishesIhave[i]+"'><img src='icons/"+fishesIhave[i]+".png' /></div>";
+        $(".top").append(icon);
+      }
+    }
+  }
+
+  fishingAreas.on("touchstart mouseover mousedown click", function(e){
+
+    fishingAreas.eachLayer(function (layer){
+    layer.setStyle({
+      fillColor:"#ff0000;",
+      weight:0,
+      fillOpacity:0
+    });
+  });
+    for (var i = 0;i<fishesIhave.length;i++){
+      var jqFish = "#"+fishesIhave[i];
+      $(jqFish).stop(true).animate({marginTop:"0px"},500)
+    };
+    $("#areaName").html('');
+    $("#otherList").empty();
+
+    //e.preventDefault();
+    e.layer.setStyle({
+      fillColor:"#ff0000;",
+      weight:0,
+      fillOpacity:0.25
+    });
+
+    var name = e.layer.feature.properties.Name;
+    var species = e.layer.feature.properties.Species;
+    var icons = e.layer.feature.properties.Icons;
+    var other = e.layer.feature.properties.Other;
+    $("#areaName").html(name);
+    var fishList = species.split(",");
+    var iconList = icons.split(",");
+    var otherList = other.split(",");
+
+    for (var i = 0; i<iconList.length;i++){
+      var thisFish = iconList[i];
+      if (fishesIhave.indexOf(thisFish) != -1){
+        var jqFish = "#" + thisFish;
+        if($(jqFish).hasClass('iTop')){
+          var dist = ($(jqFish).height()-3)+"px";
+          $(jqFish).stop(true).animate({marginTop:dist},500)
+        }else{
+          var dist = (($(jqFish).height()-3)*-1)+"px";
+          $(jqFish).stop(true).animate({marginTop:dist},500)
+        }
+      }
+    }
+    if (otherList[0]!==""){
+      for (var i=0;i<otherList.length;i++){
+        var li = "<li>"+otherList[i]+"</li>";
+        $("#otherList").append(li);
+      }
+      var dist = ($(jqFish).height())+"px";
+      $("#other").stop(true).animate({marginTop:dist},500)
+    };
+  });
+
+  fishingAreas.on("touchend mouseout mouseup", function(e){
+    //e.preventDefault();
+    e.layer.setStyle({
+      fillColor:"#ff0000;",
+      weight:0,
+      fillOpacity:0
+    });
+    for (var i = 0;i<fishesIhave.length;i++){
+      var jqFish = "#"+fishesIhave[i];
+      $(jqFish).stop(true).animate({marginTop:"0px"},500)
+    };
+    $("#areaName").html('');
+    $("#otherList").empty();
+  });
+
+</script>
+
+</body>
+</html>
